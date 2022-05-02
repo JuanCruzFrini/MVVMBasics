@@ -1,10 +1,11 @@
-package com.example.examplemvvm.model
+package com.example.examplemvvm.data.model
 
 class QuoteProvider {
 
     companion object {
+        var quotes: List<QuoteModel> = emptyList()
 
-        fun random(): QuoteModel {
+       /* fun random(): QuoteModel {
             val position = (0..10).random()
             return quote[position]
         }
@@ -45,6 +46,6 @@ class QuoteProvider {
                 author = "Anonymous"
             ),
             QuoteModel(quote = "¿A que esperas?, suscríbete.", author = "AristiDevs")
-        )
+        )*/
     }
 }
