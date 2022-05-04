@@ -7,9 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.examplemvvm.data.model.QuoteModel
 import com.example.examplemvvm.domain.GetQuotesUseCase
 import com.example.examplemvvm.domain.GetRandomQuoteUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class QuoteViewModel :  ViewModel() {
+@HiltViewModel
+class QuoteViewModel @Inject constructor(
+    private val getQuotesUseCase: GetQuotesUseCase,
+    private val getRandomQuoteUseCase: GetRandomQuoteUseCase
+):  ViewModel() {
 
     private val quoteModel = MutableLiveData<QuoteModel>()
     val _quoteModel:LiveData<QuoteModel> = quoteModel
@@ -17,8 +23,8 @@ class QuoteViewModel :  ViewModel() {
     private val isLoading = MutableLiveData<Boolean>()
     val _isLoading: LiveData<Boolean> = isLoading
 
-    var getQuotesUseCase = GetQuotesUseCase()
-    var getRandomQuoteUseCase = GetRandomQuoteUseCase()
+   /* var getQuotesUseCase = GetQuotesUseCase()
+    var getRandomQuoteUseCase = GetRandomQuoteUseCase()*/
 
     fun onCreate() {
         viewModelScope.launch {
