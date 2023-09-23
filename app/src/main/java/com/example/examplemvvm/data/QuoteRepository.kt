@@ -12,7 +12,6 @@ class QuoteRepository @Inject constructor(
     private val api : QuoteService,
     private val quoteDao:QuoteDao)
 {
-
     suspend fun getAllQuotesFromApi():List<Quote> {
         val response:List<QuoteModel> = api.getQuotes()
         return response.map { it.toDomain() }

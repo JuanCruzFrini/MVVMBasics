@@ -23,6 +23,15 @@ class MainActivity : AppCompatActivity() {
 
         quoteViewModel.onCreate()
 
+        setObservers()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        binding.viewContainer.setOnClickListener { quoteViewModel.randomQuote() }
+    }
+
+    private fun setObservers() {
         quoteViewModel._quoteModel.observe(this, Observer {
             binding.tvQuote.text = it.quote
             binding.tvAuthor.text = it.author
@@ -31,7 +40,5 @@ class MainActivity : AppCompatActivity() {
         quoteViewModel._isLoading.observe(this, Observer {
             binding.progress.isVisible = it
         })
-        
-        binding.viewContainer.setOnClickListener { quoteViewModel.randomQuote() }
     }
 }
