@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.examplemvvm.data.model.QuoteModel
 import com.example.examplemvvm.domain.GetQuotesUseCase
 import com.example.examplemvvm.domain.GetRandomQuoteUseCase
 import com.example.examplemvvm.domain.Quote
@@ -24,15 +23,12 @@ class QuoteViewModel @Inject constructor(
     private val isLoading = MutableLiveData<Boolean>()
     val _isLoading: LiveData<Boolean> = isLoading
 
-   /* var getQuotesUseCase = GetQuotesUseCase()
-    var getRandomQuoteUseCase = GetRandomQuoteUseCase()*/
-
     fun onCreate() {
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getQuotesUseCase()
 
-            if (!result.isNullOrEmpty()){
+            if (result.isNotEmpty()){
                 quoteModel.postValue(result[0])
                 isLoading.postValue(false)
             }
